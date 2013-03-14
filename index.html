@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+	<meta name='viewport' content='width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1.0'>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<title>Hellen & Ron</title>
+	<meta name='generator' content='TextMate http://macromates.com/'>
+	<meta name='author' content='Ron Boortman'>
+	
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script src='js/external/jquery.cookie.js' type='text/javascript' charset='utf-8'></script>
+	<link rel='shortcut icon' href='favicon.ico'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<script type='text/javascript' charset='utf-8'>
+		if($.cookie('to_main')) {
+		  $(location).attr('href','main.html');	
+		}
+		
+		var unsupported = {
+			msie: { version: 7, url: 'http://windows.microsoft.com/en-US/internet-explorer/download-ie', },
+			firefox: { version: 3, url: 'http://www.mozilla.org/en-US/firefox/all/', },
+			safari: { version: 1, url: 'http://www.apple.com/safari/', },
+			opera: { version: 1, url: 'http://www.opera.com/download/', },
+			chrome: { version: 1, url: 'http://www.google.com/chrome', },
+		}
+		
+		is_mobile = function () {
+			
+			var response = false;
+			
+			if (/ipad/i.test(navigator.userAgent.toLowerCase())) response = 'http://www.apple.com/ipad/';
+			if (/iphone/i.test(navigator.userAgent.toLowerCase())) response = 'http://www.apple.com/iphone/';
+			if (/ipod/i.test(navigator.userAgent.toLowerCase())) response = 'http://www.apple.com/ipod/';
+			
+			if (/android/i.test(navigator.userAgent.toLowerCase())) response = 'http://www.google.com/nexus/';
+			
+			if (/blackberry/i.test(navigator.userAgent.toLowerCase())) response = 'http://us.blackberry.com/smartphones/blackberry-z10.html?lid=us:bb:devices:blackberryz10&lpos=us:bb:devices/';
+			
+			if (/windows phone/i.test(navigator.userAgent.toLowerCase())) response = 'http://www.nokia.com/us-en/';
+			
+			return response;
+		}
+		
+		$.each(unsupported, function (browser, browser_obj) {
+			if ($.browser[browser]) {
+				if (parseInt($.browser.version) > browser_obj.version) { $(location).attr('href','home.html'); }
+				else {
+					$(document).ready(function () {
+						var new_error = 'too ancient to work with me..<br />Please, do mankind (and in particular web developers) a favour by upgrading your browser!</p><p>To download the latest version of your browser, click <a href="' + browser_obj.url + '" target="_blank">here</a>, or consult with your system administrator.';
+						$('#error-message').html(new_error);
+						
+						if (url = is_mobile()) {
+							$('a').attr('href', url);
+						}
+					});
+				}
+			}
+		})
+	</script>
+	<style type='text/css' media='screen'>
+		body, html {
+			background: rgb(106, 219, 217);
+		}
+		
+		body {
+			font-family: 'Roboto', Helvetica, Calibri, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			margin: 50px 0px 25px;
+			font-weight: 700;
+			font-size: 4em;
+		}
+	</style>
+</head>
+<body>
+	<h1>Oepsie...</h1>
+	<p>
+		I'm terribly sorry, but it seems that your browser is
+		<span id='error-message'>
+			not able to run JavaScript..<br />
+			For more information about enabling JavaScript, check out <a href='http://www.enable-javascript.com/' target='_blank'>this website</a>, or consult with your system administrator.
+		</span>
+	</p>
+</body>

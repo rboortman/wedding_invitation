@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+	<meta name='viewport' content='width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1.0'>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<title>Hellen & Ron</title>
+	<meta name='generator' content='TextMate http://macromates.com/'>
+	<meta name='author' content='Ron Boortman'>
+	
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script src='js/external/detect_mobile_browser.js' type='text/javascript' charset='utf-8'></script>
+	<script src='js/external/jquery.cookie.js' type='text/javascript' charset='utf-8'></script>
+	<script type='text/javascript' charset='utf-8'>
+		if(!$.cookie('to_main')) {
+			
+			console.log($.cookie('to_main'))
+			
+		  $(location).attr('href','index.html');	
+		}
+	</script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js'></script>
+	<script src='js/external/jQueryRotate.2.2.js' type='text/javascript' charset='utf-8'></script>
+	<script src='js/main_script.js' type='text/javascript' charset='utf-8'></script>
+	<link rel='stylesheet' href='css/main_style.css' type='text/css' charset='utf-8'>
+	<link rel='shortcut icon' href='favicon.ico'>
+	
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id='header'>
+		<div id="tab-container">
+			<div id="hellen-tab" class='tab first-tab'>
+				<div id="hellen-container" class='tab-containers'>
+					<span id='hellen' class='tab-span'>Her</span>
+				</div>
+			</div>
+			<div id="us-tab" class='tab'>
+				<div id="us-container" class='tab-containers'>
+					<span id='us' class='tab-span'>Us</span>
+				</div>
+			</div>
+			<div id="ron-tab" class='tab last-tab'>
+				<div id="ron-container" class='tab-containers'>
+					<span id='ron' class='tab-span'>Him</span>
+				</div>
+			</div>
+		</div>
+		<div id="language-container">
+			<div id="current-language">
+				<img src='images/indonesian-flag.png' />
+			</div>
+			<div id="available-languages">
+				<div id="indonesian" class='img-containers selected'>
+					<img src='images/indonesian-flag.png' />
+				</div>
+				<div id="english" class='img-containers'>
+					<img src='images/english-flag.png' />
+				</div>
+				<div id="dutch" class='img-containers'>
+					<img src='images/dutch-flag.png' />
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div id='content'>
+		
+	</div>
+	<div id='footer'>
+		
+	</div>
+</body>

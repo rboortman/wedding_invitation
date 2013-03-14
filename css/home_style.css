@@ -1,0 +1,61 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  background: rgb(106, 219, 217);
+  font-family: 'Petit Formal Script', cursive;
+}
+
+#image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.images {
+  padding: 5px;
+  background: white;
+  border: 1px solid rgba(44, 91, 91, 0.9);
+  position: absolute;
+}
+
+.images img {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+body a {
+  color: #333;
+}
+
+body a:hover {
+  color: red;
+}
+
+div#names {
+  width: 30%;
+  height: 40%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(44, 91, 91, 0.9);
+  box-shadow: 0px 0px 15px 3px rgba(44, 91, 91, 0.6);
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  font-size: 2em;
+  text-shadow: 1px 1px rgba(176, 225, 224, .7), -1px -1px rgba(44, 91, 91, .7);
+  
+  display: table;
+}
+
+div#names p {
+  display: table-cell; 
+  vertical-align: middle;
+  text-align: center;
+}
+
