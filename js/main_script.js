@@ -2,26 +2,26 @@
 var flags = {
   indonesian: {
     small_position: {
-      top: 5,
-      bottom: (90 - 26) - 5,
-      right: (90 - 26) - 5,
-      left: 5,
+      top: '-=15',
+      bottom: '+=15',
+      right: '+=39',
+      left: '-=39',
     },
   },
   english: {
     small_position: {
-      top: (90 - 26) - 15,
-      bottom: 15,
-      right: (90 - 26) - 15,
-      left: 15,
+      top: '+=29',
+      bottom: '-=29',
+      right: '+=29',
+      left: '-=29',
     },
   },
   dutch: {
     small_position: {
-      top: (90 - 26) - 5,
-      bottom: 5,
-      right: 5,
-      left: (90 - 26) - 5,
+      top: '+=39',
+      bottom: '-=39',
+      right: '-=15',
+      left: '+=15',
     },
   },
 };
@@ -29,25 +29,35 @@ var current_language = {
   flag: flags.indonesian,
   center: {top: 20, bottom: 44, right: 20, left: 44, },
 };
-var animate_options = { queue: false, }
+//var animate_options = { queue: false, complete:  }
 
 
 function over_language (event) {
-  $('.img-containers').removeAttr('style');
-  
   $.each($('.img-containers'), function (key, img) {
-    $(img).animate(flags[img.id].small_position, animate_options)
+    setTimeout( function () {
+      $(img).animate(flags[img.id].small_position, { queue: false });
+      $(img).show(400);
+    }, key * 200)
   });
 }
 
 function out_language (event) {
-  $('.img-containers').removeAttr('style');
-  $('.img-containers').animate(current_language.center, animate_options);
+  $.each($('.img-containers'), function (key, img) {
+    $(img).animate(current_language.center, { queue: false });
+    $(img).hide(400);
+  });
+}
+
+function change_language (event) {
+  $('.img-containers').removeClass('selected');
+  $(this).addClass('selected');
+  
+  $('#current-language img')[0].src = 'images/' + this.id + '-flag.png'
 }
 
 function ready () {
-  $('.img-containers').css(current_language.center);
+  $('.img-containers').css(current_language.center).hide().click(change_language);
   $('#language-container').hover(over_language, out_language);
 };
 
-$(document).ready(ready);
+window.onload = ready;
