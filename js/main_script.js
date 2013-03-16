@@ -31,35 +31,40 @@ var current_language = {
 };
 //var animate_options = { queue: false, complete:  }
 
+var timeouts = [];
 var languages = {};
 
 
 function over_language (event) {
-  $.each($('.img-containers'), function (key, img) {
-    setTimeout( function () {
+  $('.img-containers').each( function hover_over (key, img) {
+    var timeout = setTimeout( function () {
       $(img).animate(flags[img.id].small_position, { queue: false });
       $(img).show(400);
-    }, key * 200)
+    }, key * 200);
+    timeouts.push(timeout);
   });
 }
 
 function out_language (event) {
-  $.each($('.img-containers'), function (key, img) {
+  
+  $.each(timeouts, function clear_timeouts (key, timeout) {
+    clearTimeout(timeout);
+    delete timeouts[key];
+  })
+  
+  $('.img-containers').each( function hover_out (key, img) {
     $(img).animate(current_language.center, { queue: false });
     $(img).hide(400);
   });
 }
 
 function change_language (event) {
-  
-  console.log(this)
-  
   $('.img-containers').removeClass('selected');
   $(this).addClass('selected');
   
   $('#current-language img')[0].src = 'images/' + this.id + '-flag.png'
   
-  languages[this.id].change_language();
+  languages[this.id].change_lang();
 }
 
 function initiate_language () {
@@ -89,10 +94,12 @@ function change_tab (event) {
 function ready () {
   
   languages = {
-    english: new en(),
-    indonesian: new id(),
-    dutch: new nl(), 
+    english: new LanguageObject(en),
+    indonesian: new LanguageObject(id),
+    dutch: new LanguageObject(nl), 
   }
+  
+  // console.log(languages)
   
   initiate_language()
   
