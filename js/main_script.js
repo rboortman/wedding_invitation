@@ -29,7 +29,8 @@ var current_language = {
   flag: flags.indonesian,
   center: {top: 20, bottom: 44, right: 20, left: 44, },
 };
-//var animate_options = { queue: false, complete:  }
+var animate_speed = 400;
+var animate_options = { duration: animate_speed, queue: false, }
 
 var timeouts = [];
 var languages = {};
@@ -38,9 +39,9 @@ var languages = {};
 function over_language (event) {
   $('.img-containers').each( function hover_over (key, img) {
     var timeout = setTimeout( function () {
-      $(img).animate(flags[img.id].small_position, { queue: false });
-      $(img).show(400);
-    }, key * 200);
+      $(img).animate(flags[img.id].small_position, animate_options);
+      $(img).show(animate_speed);
+    }, key * (animate_speed / 2));
     timeouts.push(timeout);
   });
 }
@@ -53,8 +54,8 @@ function out_language (event) {
   })
   
   $('.img-containers').each( function hover_out (key, img) {
-    $(img).animate(current_language.center, { queue: false });
-    $(img).hide(400);
+    $(img).animate(current_language.center, animate_options);
+    $(img).hide(animate_speed);
   });
 }
 
@@ -89,6 +90,16 @@ function initiate_language () {
 function change_tab (event) {
   $('.tab').removeClass('selected');
   $(this).addClass('selected');
+  
+  $('#text-container').fadeOut({
+    duration: animate_speed,
+    
+    done: function reappear() {
+      $('#text-container').fadeIn({
+        duration: animate_speed,
+      })
+    },
+  })
 }
 
 function ready () {
