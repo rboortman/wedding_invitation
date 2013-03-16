@@ -61,6 +61,11 @@ div.tab:hover {
   border-color: rgba(168, 72, 65, 0.7);
 }
 
+div#tab-container .selected {
+  background: rgba(223, 177, 164, 0.9);
+  border-color: rgba(168, 72, 65, 0.7);
+}
+
 div.first-tab {
   -webkit-border-top-left-radius: 20px;
   -moz-border-radius-topleft: 20px;

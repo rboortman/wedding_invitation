@@ -2,26 +2,26 @@
 var flags = {
   indonesian: {
     small_position: {
-      top: '-=15',
-      bottom: '+=15',
-      right: '+=39',
-      left: '-=39',
+      top: '5',
+      bottom: '59',
+      right: '59',
+      left: '5',
     },
   },
   english: {
     small_position: {
-      top: '+=29',
-      bottom: '-=29',
-      right: '+=29',
-      left: '-=29',
+      top: '49',
+      bottom: '15',
+      right: '49',
+      left: '15',
     },
   },
   dutch: {
     small_position: {
-      top: '+=39',
-      bottom: '-=39',
-      right: '-=15',
-      left: '+=15',
+      top: '59',
+      bottom: '5',
+      right: '5',
+      left: '59',
     },
   },
 };
@@ -30,6 +30,8 @@ var current_language = {
   center: {top: 20, bottom: 44, right: 20, left: 44, },
 };
 //var animate_options = { queue: false, complete:  }
+
+var languages = {};
 
 
 function over_language (event) {
@@ -49,15 +51,54 @@ function out_language (event) {
 }
 
 function change_language (event) {
+  
+  console.log(this)
+  
   $('.img-containers').removeClass('selected');
   $(this).addClass('selected');
   
   $('#current-language img')[0].src = 'images/' + this.id + '-flag.png'
+  
+  languages[this.id].change_language();
+}
+
+function initiate_language () {
+  var user_language = window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
+  var language_element;
+  switch (user_language) {
+    case 'id':
+      language_element = $('#indonesian')
+      break;
+    
+    case 'nl':
+      language_element = $('#dutch')
+      break;
+    
+    default:
+      language_element = $('#english')
+      break;
+  }
+  change_language.call(language_element[0])
+}
+
+function change_tab (event) {
+  $('.tab').removeClass('selected');
+  $(this).addClass('selected');
 }
 
 function ready () {
+  
+  languages = {
+    english: new en(),
+    indonesian: new id(),
+    dutch: new nl(), 
+  }
+  
+  initiate_language()
+  
   $('.img-containers').css(current_language.center).hide().click(change_language);
   $('#language-container').hover(over_language, out_language);
+  $('.tab').click(change_tab);
 };
 
 window.onload = ready;
